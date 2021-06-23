@@ -1,0 +1,26 @@
+{
+  "name": "social-media-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andhikayusup/social-media-app.git"
+  },
+  "author": "andhikayusup",
+  "type": "module",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andhikayusup/social-media-app/issues"
+  },
+  "homepage": "https://github.com/andhikayusup/social-media-app#readme",
+  "dependencies": {
+    "apollo-server": "^2.25.2",
+    "graphql": "^15.5.1",
+    "mongoose": "^5.12.14",
+    "prettier": "^2.3.1"
+  }
+}
