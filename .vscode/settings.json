@@ -2,5 +2,12 @@
     "editor.formatOnSave": false,
     "[javascript]": {
         "editor.formatOnSave": true
-    }
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+      },
+    "eslint.validate": [
+        "javascript"
+    ],
+    "editor.tabSize": 2
 }
