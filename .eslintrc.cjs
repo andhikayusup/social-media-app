@@ -2,17 +2,17 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    node: true,
+    node: true
   },
   extends: 'eslint:recommended',
   parserOptions: {
     ecmaVersion: 12,
-    sourceType: 'module',
+    sourceType: 'module'
   },
   rules: {
-    indent: ['error', 'space'],
+    indent: ['error', 2],
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
-    semi: ['error', 'never'],
-  },
-};
+    semi: ['error', 'never']
+  }
+}

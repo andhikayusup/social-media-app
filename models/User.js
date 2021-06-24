@@ -1,12 +1,12 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
-const { model, Schema } = mongoose;
+const { model, Schema } = mongoose
 
 const userSchema = new Schema({
   username: String,
   password: String,
   email: String,
-  createdAt: String,
-});
+  createdAt: String
+})
 
-export default model('User', userSchema);
+export default model('User', userSchema)
