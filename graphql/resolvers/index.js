@@ -1,16 +1,7 @@
-import Post from '../../models/Post.js'
+import { postsResolvers } from './posts.js'
 
-const resolvers = {
+export const resolvers = {
   Query: {
-    async getPosts() {
-      try {
-        const posts = await Post.find()
-        return posts
-      } catch (err) {
-        throw new Error(err)
-      }
-    }
+    ...postsResolvers.Query
   }
 }
-
-export default resolvers
