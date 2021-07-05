@@ -6,6 +6,7 @@ export const resolvers = {
     ...postsResolvers.Query
   },
   Mutation: {
+    ...postsResolvers.Mutation,
     ...usersResolvers.Mutation
   }
 }
