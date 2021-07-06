@@ -1,3 +1,4 @@
+import { AuthenticationError } from 'apollo-server'
 import Post from '../../models/Post.js'
 import { checkAuth } from '../../utils/check-auth.js'
 
@@ -39,6 +40,22 @@ export const postsResolvers = {
       const post = await newPost.save()
 
       return post
+    },
+    async deletePost(_, { postId }, context) {
+      const user = checkAuth(context)
+
+      try {
+        const post = await Post.findById(postId)
+
+        if (post.username === user.username) {
+          post.delete()
+          return 'Post deleted successfully'
+        } else {
+          throw new AuthenticationError('Action not allowed')
+        }
+      } catch (err) {
+        throw new Error(err)
+      }
     }
   }
 }
