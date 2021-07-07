@@ -6,8 +6,10 @@ import { ApolloProvider } from '@apollo/client'
 
 import App from './App'
 
+const { REACT_APP_BACKEND_HOST } = process.env
+
 const httpLink = new createHttpLink({
-  uri: 'http://localhost:5000'
+  uri: REACT_APP_BACKEND_HOST
 })
 
 const client = new ApolloClient({
