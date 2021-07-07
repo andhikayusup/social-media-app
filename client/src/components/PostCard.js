@@ -3,6 +3,14 @@ import { Button, Card, Image } from 'semantic-ui-react'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 
+const likePost = () => {
+  console.log('Post Liked')
+}
+
+const commentPost = () => {
+  console.log('Post Commentted')
+}
+
 const PostCard = ({
   post: { id, username, createdAt, body, commentCount, likeCount }
 }) => {
@@ -26,6 +34,7 @@ const PostCard = ({
           color="teal"
           labelPosition="right"
           icon="heart"
+          onClick={likePost}
           label={{
             basic: true,
             color: 'teal',
@@ -38,6 +47,7 @@ const PostCard = ({
           color="blue"
           labelPosition="right"
           icon="comments"
+          onClick={commentPost}
           label={{
             basic: true,
             color: 'teal',
