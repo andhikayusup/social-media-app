@@ -84,7 +84,7 @@ export const usersResolvers = {
 
       const match = await bcrypt.compare(password, user.password)
       if (!match) {
-        errors.general = 'Wrong credintials'
+        errors.general = 'Wrong credentials'
         throw new UserInputError('Wrong credintials', { errors })
       }
 

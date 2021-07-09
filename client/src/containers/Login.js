@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Button, Form } from 'semantic-ui-react'
 import { useMutation } from '@apollo/react-hooks'
 import gql from 'graphql-tag'
+
 import { useForm } from '../utils/hooks'
+import { AuthContext } from '../context/auth'
 
 const Login = (props) => {
+  const context = useContext(AuthContext)
   const [errors, setErrors] = useState({})
 
   const { onChange, onSubmit, values } = useForm(loginUserCallback, {
@@ -12,8 +15,9 @@ const Login = (props) => {
     password: ''
   })
 
-  const [loginUser, { loading }] = useMutation(REGISTER_USER, {
-    update(_, __) {
+  const [loginUser, { loading }] = useMutation(LOGIN_USER, {
+    update(_, { data: { login: userData } }) {
+      context.login(userData)
       props.history.push('/')
     },
     onError(err) {
@@ -29,7 +33,7 @@ const Login = (props) => {
   return (
     <div className="form-container">
       <Form onSubmit={onSubmit} noValidate loading={loading}>
-        <h1>Register</h1>
+        <h1>Login</h1>
         <Form.Input
           label="Username"
           placeholder="Username ..."
@@ -50,11 +54,18 @@ const Login = (props) => {
         />
         <Button type="submit" content="Login" primary />
       </Form>
+      {errors.general && (
+        <div className="ui error message">
+          <ul className="list">
+            <li>{errors.general}</li>
+          </ul>
+        </div>
+      )}
     </div>
   )
 }
 
-const REGISTER_USER = gql`
+const LOGIN_USER = gql`
   mutation login($username: String!, $password: String!) {
     login(loginInput: { username: $username, password: $password }) {
       id
