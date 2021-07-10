@@ -10,6 +10,7 @@ import Home from './containers/Home'
 import Login from './containers/Login'
 import Register from './containers/Register'
 import { AuthProvider } from './context/auth'
+import AuthRoute from './components/AuthRoute'
 
 const App = () => {
   return (
@@ -18,8 +19,8 @@ const App = () => {
         <Container>
           <Navbar />
           <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
+          <AuthRoute exact path="/login" component={Login} />
+          <AuthRoute exact path="/register" component={Register} />
         </Container>
       </Router>
     </AuthProvider>
