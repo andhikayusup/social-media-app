@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Form, Button } from 'semantic-ui-react'
 import { useMutation, gql } from '@apollo/client'
 
@@ -6,6 +6,7 @@ import { useForm } from '../utils/hooks'
 import { FETCH_POSTS_QUERY } from '../utils/graphql'
 
 const PostForm = () => {
+  const [errors, setErrors] = useState({})
   const { onChange, onSubmit, values } = useForm(createPostCallback, {
     body: ''
   })
@@ -26,8 +27,8 @@ const PostForm = () => {
 
       values.body = ''
     },
-    onError(error) {
-      console.log(`error`, error)
+    onError(err) {
+      setErrors(err.graphQLErrors[0].extensions.exception.errors)
     }
   })
 
@@ -36,19 +37,31 @@ const PostForm = () => {
   }
 
   return (
-    <Form onSubmit={onSubmit}>
-      <h2>Create Post:</h2>
-      <Form.Field>
-        <Form.Input
-          placeholder="Hi World!"
-          name="body"
-          onChange={onChange}
-          value={values.body}
-          error={error}
-        />
-      </Form.Field>
-      <Button content="Submit" type="submit" color="teal" />
-    </Form>
+    <>
+      <Form onSubmit={onSubmit}>
+        <h2>Create Post:</h2>
+        <Form.Field>
+          <Form.Input
+            placeholder="Hi World!"
+            name="body"
+            onChange={onChange}
+            value={values.body}
+            error={error}
+          />
+        </Form.Field>
+        <Button content="Submit" type="submit" color="teal" />
+      </Form>
+      {error && (
+        <div
+          className="ui error message"
+          style={{ marginBottom: 20 }}
+        >
+          <ul className="list">
+            <li>{error.graphQLErrors[0].message}</li>
+          </ul>
+        </div>
+      )}
+    </>
   )
 }
 
