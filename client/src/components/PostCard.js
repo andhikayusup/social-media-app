@@ -54,6 +54,8 @@ const PostCard = ({
             pointing: 'left',
             content: `${commentCount}`
           }}
+          as={Link}
+          to={`/posts/${id}`}
         />
       </Card.Content>
     </Card>
