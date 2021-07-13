@@ -5,15 +5,20 @@ import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 
 import { AuthContext } from '../context/auth'
+import LikeButton from './LikeButton'
 
 const PostCard = ({
-  post: { id, username, createdAt, body, commentCount, likeCount }
+  post: {
+    id,
+    username,
+    createdAt,
+    body,
+    commentCount,
+    likeCount,
+    likes
+  }
 }) => {
   const { user } = useContext(AuthContext)
-
-  const likePost = () => {
-    console.log('Post Liked')
-  }
 
   const commentPost = () => {
     console.log('Post Commentted')
@@ -34,19 +39,7 @@ const PostCard = ({
         <Card.Description>{body}</Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <Button
-          basic
-          color="teal"
-          labelPosition="right"
-          icon="heart"
-          onClick={likePost}
-          label={{
-            basic: true,
-            color: 'teal',
-            pointing: 'left',
-            content: `${likeCount}`
-          }}
-        />
+        <LikeButton user={user} post={{ id, likes, likeCount }} />
         <Button
           basic
           color="blue"

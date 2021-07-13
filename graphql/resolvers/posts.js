@@ -66,14 +66,15 @@ export const postsResolvers = {
     async likePost(_, { postId }, context) {
       const { username } = checkAuth(context)
 
-      const post = await post.findById(postId)
-
+      const post = await Post.findById(postId)
       if (post) {
-        if (post.likes.find(post.username === username)) {
+        if (post.likes.find((like) => like.username === username)) {
+          // Post already likes, unlike it
           post.likes = post.likes.filter(
             (like) => like.username !== username
           )
         } else {
+          // Not liked, like post
           post.likes.push({
             username,
             createdAt: new Date().toISOString()

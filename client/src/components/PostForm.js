@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import { Form, Button } from 'semantic-ui-react'
 import { useMutation, gql } from '@apollo/client'
@@ -6,7 +7,7 @@ import { useForm } from '../utils/hooks'
 import { FETCH_POSTS_QUERY } from '../utils/graphql'
 
 const PostForm = () => {
-  const [errors, setErrors] = useState({})
+  const [_, setErrors] = useState({})
   const { onChange, onSubmit, values } = useForm(createPostCallback, {
     body: ''
   })

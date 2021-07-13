@@ -23,21 +23,21 @@ const Home = () => {
             <PostForm />
           </Grid.Column>
         )}
-        {loading ? (
-          <h1>Loading posts ...</h1>
-        ) : (
-          !error &&
-          data.getPosts.map((post) => (
-            <Transition.Group>
+        <Transition.Group>
+          {loading ? (
+            <h1>Loading posts ...</h1>
+          ) : (
+            !error &&
+            data.getPosts.map((post) => (
               <Grid.Column
                 key={post.id}
                 style={{ marginBottom: '20px' }}
               >
                 <PostCard post={post} />
               </Grid.Column>
-            </Transition.Group>
-          ))
-        )}
+            ))
+          )}
+        </Transition.Group>
       </Grid.Row>
     </Grid>
   )
