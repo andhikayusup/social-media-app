@@ -11,6 +11,7 @@ import Login from './containers/Login'
 import Register from './containers/Register'
 import { AuthProvider } from './context/auth'
 import AuthRoute from './components/AuthRoute'
+import SinglePost from './containers/SinglePost'
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route exact path="/" component={Home} />
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/register" component={Register} />
+          <Route exact path="/posts/:postId" component={SinglePost} />
         </Container>
       </Router>
     </AuthProvider>
