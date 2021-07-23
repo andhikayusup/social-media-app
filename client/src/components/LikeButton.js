@@ -55,7 +55,11 @@ const LikeButton = ({ user, post: { id, likes, likeCount } }) => {
     />
   )
 
-  return <MyPopup content="Like Post">{likeButton}</MyPopup>
+  return (
+    <MyPopup content={liked ? 'Unlike Post' : 'Like Post'}>
+      {likeButton}
+    </MyPopup>
+  )
 }
 
 const LIKE_POST_MUTATION = gql`
