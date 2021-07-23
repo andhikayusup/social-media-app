@@ -9,6 +9,7 @@ import LikeButton from '../components/LikeButton'
 import { AuthContext } from '../context/auth'
 import DeleteButton from '../components/DeleteButton'
 import { useMutation } from '@apollo/react-hooks'
+import MyPopup from '../components/MyPopup'
 
 const SinglePost = (props) => {
   const postId = props.match.params.postId
@@ -68,20 +69,21 @@ const SinglePost = (props) => {
                       likeCount: post.likeCount
                     }}
                   />
-                  <Button
-                    basic
-                    color="blue"
-                    labelPosition="right"
-                    icon="comments"
-                    label={{
-                      basic: true,
-                      color: 'teal',
-                      pointing: 'left',
-                      content: `${post.commentCount}`
-                    }}
-                    as={Link}
-                    to={`/posts/${post.id}`}
-                  />
+                  <MyPopup content="Comment Post">
+                    <Button
+                      basic
+                      color="blue"
+                      labelPosition="right"
+                      icon="comments"
+                      label={{
+                        basic: true,
+                        color: 'teal',
+                        pointing: 'left',
+                        content: `${post.commentCount}`
+                      }}
+                      onClick={() => commentInputRef.current.focus()}
+                    />
+                  </MyPopup>
                   {user && user.username === post.username && (
                     <DeleteButton
                       postId={postId}

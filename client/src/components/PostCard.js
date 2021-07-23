@@ -7,6 +7,7 @@ import { useContext } from 'react'
 import { AuthContext } from '../context/auth'
 import LikeButton from './LikeButton'
 import DeleteButton from './DeleteButton'
+import MyPopup from './MyPopup'
 
 const PostCard = ({
   post: {
@@ -20,10 +21,6 @@ const PostCard = ({
   }
 }) => {
   const { user } = useContext(AuthContext)
-
-  const commentPost = () => {
-    console.log('Post Commentted')
-  }
 
   return (
     <Card fluid>
@@ -41,21 +38,22 @@ const PostCard = ({
       </Card.Content>
       <Card.Content extra>
         <LikeButton user={user} post={{ id, likes, likeCount }} />
-        <Button
-          basic
-          color="blue"
-          labelPosition="right"
-          icon="comments"
-          onClick={commentPost}
-          label={{
-            basic: true,
-            color: 'teal',
-            pointing: 'left',
-            content: `${commentCount}`
-          }}
-          as={Link}
-          to={`/posts/${id}`}
-        />
+        <MyPopup content="Comment Post">
+          <Button
+            basic
+            color="blue"
+            labelPosition="right"
+            icon="comments"
+            label={{
+              basic: true,
+              color: 'teal',
+              pointing: 'left',
+              content: `${commentCount}`
+            }}
+            as={Link}
+            to={`/posts/${id}`}
+          />
+        </MyPopup>
         {user && user.username === username && (
           <DeleteButton postId={id} />
         )}

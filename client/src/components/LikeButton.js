@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Button } from 'semantic-ui-react'
 import gql from 'graphql-tag'
 import { useMutation } from '@apollo/client'
+import MyPopup from './MyPopup'
 
 const LikeButton = ({ user, post: { id, likes, likeCount } }) => {
   const [liked, setLiked] = useState(false)
@@ -54,7 +55,7 @@ const LikeButton = ({ user, post: { id, likes, likeCount } }) => {
     />
   )
 
-  return likeButton
+  return <MyPopup content="Like Post">{likeButton}</MyPopup>
 }
 
 const LIKE_POST_MUTATION = gql`
