@@ -17,7 +17,7 @@ export const commentsResolvers = {
         post.comments.unshift({
           body,
           username: username,
-          createdAt: new Date().toISOString
+          createdAt: new Date().toISOString()
         })
 
         await post.save()
